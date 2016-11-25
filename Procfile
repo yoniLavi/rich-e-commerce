@@ -1,1 +1,1 @@
-web: gunicorn multiauth.wsgi:application
+web: gunicorn rich-e-commerce.wsgi:application
