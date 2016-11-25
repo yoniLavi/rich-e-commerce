@@ -144,3 +144,5 @@ MEDIA_URL = '/media/'
 
 STRIPE_PUBLISHABLE = os.getenv('STRIPE_PUBLISHABLE_KEY')
 STRIPE_SECRET = os.getenv('STRIPE_SECRET_KEY')
+
+ALLOWED_HOSTS = ['rich-e-commerce.herokuapp.com', 'localhost']
