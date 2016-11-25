@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+                <tr>
+                    <td><img height="100" width="100" src="{{ MEDIA_URL }}{{ item.product.image }}"></td>
+                    <td>{{ item.product.name }}</td>
+                    <td>{{ item.product.description }}</td>
+                    <td>{{ item.product.price }}</td>
+                    <td><a href="{% url 'remove_from_cart' item.id %}">Remove</a></td>
+                </tr>
+            {% endfor %}
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>{{ total }}</td>
+                    <td></td>
+                </tr>
+        </tbody>
+    </table>
+{% endblock %}
