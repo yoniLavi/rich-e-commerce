@@ -87,13 +87,13 @@ WSGI_APPLICATION = 'rich-e-commerce.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-# CLEARDB_DATABASE_URL = os.environ.get("CLEARDB_DATABASE_URL", "")
-#
-# DATABASES['default'] = dj_database_url.parse(CLEARDB_DATABASE_URL)
+CLEARDB_DATABASE_URL = os.environ.get("CLEARDB_DATABASE_URL", "")
+
+DATABASES['default'] = dj_database_url.parse(CLEARDB_DATABASE_URL)
 
 
 # Password validation
