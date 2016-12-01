@@ -25,7 +25,7 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DJANGO_DEBUG')
 
 ALLOWED_HOSTS = ['rich-e-commerce.herokuapp.com', '127.0.0.1']
 
@@ -91,8 +91,8 @@ DATABASES = {
         # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-CLEARDB_DATABASE_URL = os.environ.get("CLEARDB_DATABASE_URL", "")
 
+CLEARDB_DATABASE_URL = os.environ.get("CLEARDB_DATABASE_URL")
 DATABASES['default'] = dj_database_url.parse(CLEARDB_DATABASE_URL)
 
 
@@ -153,7 +153,7 @@ AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
 AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
-
+AWS_S3_HOST = 's3-eu-west-1.amazonaws.com'
 
 # STATIC_URL = '/static/'
 STATICFILES_DIRS = (
