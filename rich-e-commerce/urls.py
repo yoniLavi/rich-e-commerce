@@ -24,7 +24,23 @@ from django.views import static
 from settings import MEDIA_ROOT
 
 
+
+from django.conf.urls import url, include
+from rest_framework import routers
+from products import views as product_views
+from cart import views as cart_views
+
+
+
+router = routers.DefaultRouter()
+router.register(r'products', product_views.ProductViewSet)
+router.register(r'users', cart_views.UserViewSet)
+router.register(r'cart', cart_views.CartItemViewSet)
+
+
 urlpatterns = [
+    url(r'^api/', include(router.urls)),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^admin/', admin.site.urls),
     url(r'^products/', include(products_urls)),
     url(r'^payments/', include(payments_urls)),

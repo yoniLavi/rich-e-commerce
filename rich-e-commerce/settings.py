@@ -21,7 +21,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', ')2fe^0mz78a4%lpm62zd@#o21exb&1$11e_c7no^yh68y$%qdr')
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'payments',
     'django_gravatar',
     'cart',
-    'storages'
+    'storages',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -87,13 +88,13 @@ WSGI_APPLICATION = 'rich-e-commerce.wsgi.application'
 
 DATABASES = {
     'default': {
-        # 'ENGINE': 'django.db.backends.sqlite3',
-        # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
-CLEARDB_DATABASE_URL = os.environ.get("CLEARDB_DATABASE_URL")
-DATABASES['default'] = dj_database_url.parse(CLEARDB_DATABASE_URL)
+# CLEARDB_DATABASE_URL = os.environ.get("CLEARDB_DATABASE_URL")
+# DATABASES['default'] = dj_database_url.parse(CLEARDB_DATABASE_URL)
 
 
 # Password validation
@@ -169,3 +170,12 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIAFILES_LOCATION = 'media'
 MEDIA_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, MEDIAFILES_LOCATION)
 DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
+
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAdminUser',
+    ],
+    'PAGE_SIZE': 10
+}

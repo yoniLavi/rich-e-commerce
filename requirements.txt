@@ -9,4 +9,3 @@ Pillow==3.4.2
 requests==2.12.1
 stripe==1.42.0
 wheel==0.24.0
-MySQL-python==1.2.5
