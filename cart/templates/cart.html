@@ -20,6 +20,7 @@
                 <th>Name</th>
                 <th>Description</th>
                 <th>Price</th>
+                <th>Quantity</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -30,6 +31,7 @@
                     <td>{{ item.product.name }}</td>
                     <td>{{ item.product.description }}</td>
                     <td>{{ item.product.price }}</td>
+                    <td>{{ item.quantity }}</td>
                     <td><a href="{% url 'remove_from_cart' item.id %}">Remove</a></td>
                 </tr>
             {% endfor %}
@@ -38,6 +40,7 @@
                     <td></td>
                     <td></td>
                     <td>{{ total }}</td>
+                    <td></td>
                     <td></td>
                 </tr>
         </tbody>

@@ -25,7 +25,7 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', ')2fe^0mz78a4%lpm62zd@#o21exb&1$11e_
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DJANGO_DEBUG')
+DEBUG = True
 
 ALLOWED_HOSTS = ['rich-e-commerce.herokuapp.com', '127.0.0.1']
 
@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     'django_gravatar',
     'cart',
     'storages',
-    'rest_framework',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [

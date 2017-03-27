@@ -24,7 +24,7 @@ def user_cart(request):
     cartItems = CartItem.objects.filter(user=request.user)
     total = 0
     for item in cartItems:
-        total += item.product.price
+        total += item.quantity * item.product.price
 
     if request.method == 'POST':
         form = MakePaymentForm(request.POST)
@@ -67,11 +67,18 @@ def user_cart(request):
 @login_required(login_url="/login")
 def add_to_cart(request, id):
     product = get_object_or_404(Product, pk=id)
-    cartItem = CartItem(
-        user=request.user,
-        product=product,
-        quantity=1
-    )
+    quantity=int(request.POST.get('quantity'))
+
+    try:
+        cartItem = CartItem.objects.get(product=product)
+        cartItem.quantity += quantity
+    except CartItem.DoesNotExist:
+        cartItem = CartItem(
+            user=request.user,
+            product=product,
+            quantity=quantity
+        )
+
     cartItem.save()
     return redirect(reverse('cart'))
 
