@@ -18,7 +18,7 @@
    <div class="masthead">
        <ul class="nav nav-pills pull-right">
             <li><a href="/"><i class="fa fa-home"></i> Home</a></li>
-            <li><a href="{% url 'products' %}"><i class="fa fa-cube"></i> Products</a></li>
+            <li><a href="{% url 'categories' %}"><i class="fa fa-cube"></i> Products</a></li>
             {% if user.is_authenticated %}
                 <li><a href="{% url 'profile' %}"><i class="fa fa-user"></i> Profile</a></li>
                 <li><a href="{% url 'logout' %}"><i class="fa fa-sign-out"></i> Log Out</a></li>
@@ -42,10 +42,23 @@
     {% endif %}
 
 
-   <div class="container">
-       {% block content %}
-       {% endblock %}
-   </div>
+
+    <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                {% block sidebar %}
+                {% endblock sidebar %}
+            </ul>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <div class="content">
+                {% block content %}
+                {% endblock content%}
+            </div>
+        </div>
+    </div>
+
+
    <hr>
    <div class="footer">
        <p>Made By Bootcampers and Django </p>

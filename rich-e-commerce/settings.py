@@ -47,7 +47,8 @@ INSTALLED_APPS = [
     'django_gravatar',
     'cart',
     'storages',
-    'rest_framework'
+    'rest_framework',
+    'categories'
 ]
 
 MIDDLEWARE = [

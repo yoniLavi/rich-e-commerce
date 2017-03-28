@@ -18,6 +18,7 @@ from django.contrib import admin
 from home.views import get_index
 from accounts import urls as accounts_urls
 from products import urls as products_urls
+from categories import urls as categories_urls
 from payments import urls as payments_urls
 from cart import urls as cart_urls
 from django.views import static
@@ -43,6 +44,7 @@ urlpatterns = [
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^admin/', admin.site.urls),
     url(r'^products/', include(products_urls)),
+    url(r'^categories/', include(categories_urls)),
     url(r'^payments/', include(payments_urls)),
     url(r'^cart/', include(cart_urls)),
     url(r'^$', get_index, name='index'),

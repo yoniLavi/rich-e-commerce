@@ -70,7 +70,7 @@ def add_to_cart(request, id):
     quantity=int(request.POST.get('quantity'))
 
     try:
-        cartItem = CartItem.objects.get(product=product)
+        cartItem = CartItem.objects.get(user=request.user, product=product)
         cartItem.quantity += quantity
     except CartItem.DoesNotExist:
         cartItem = CartItem(
