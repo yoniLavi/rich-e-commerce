@@ -16,7 +16,7 @@ def get_category(request, id):
     parent = get_object_or_404(Category, pk=id)
     subcategories = Category.objects.filter(parent=parent)
 
-    products = Product.objects.filter(category=parent)
+    products = parent.products.all()
 
     args = { 'categories': categories, 'subcategories': subcategories, 'products': products}
     return render(request, 'categories.html', args)
