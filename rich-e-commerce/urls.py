@@ -49,5 +49,6 @@ urlpatterns = [
     url(r'^cart/', include(cart_urls)),
     url(r'^$', get_index, name='index'),
     url(r'^media/(?P<path>.*)$', static.serve,{'document_root': MEDIA_ROOT}),
-    url(r'', include(accounts_urls)),
+    url(r'accounts/', include(accounts_urls)),
+    url(r'user/', include(accounts_urls)),
 ]

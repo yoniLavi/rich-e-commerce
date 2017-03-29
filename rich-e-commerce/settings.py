@@ -21,7 +21,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', ')2fe^0mz78a4%lpm62zd@#o21exb&1$11e_c7no^yh68y$%qdr')
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -172,6 +172,23 @@ MEDIAFILES_LOCATION = 'media'
 MEDIA_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, MEDIAFILES_LOCATION)
 DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
 
+# Email Settings
+DEFAULT_FROM_EMAIL = 'richecommerce@example.com'
+
+# The following settings are for dev/debug.
+# Not suitable for production.
+
+# To use Django's Console email backend
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# To run the SMTP debugger in terminal
+# python -m smtpd -n -c DebuggingServer localhost:1025
+# And use the following settings.
+# EMAIL_HOST = 'localhost'
+# EMAIL_PORT = 1025
+# EMAIL_HOST_USER = ''
+# EMAIL_HOST_PASSWORD = ''
+# EMAIL_USE_TLS = False
 
 
 REST_FRAMEWORK = {
