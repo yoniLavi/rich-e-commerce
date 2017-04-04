@@ -2,11 +2,11 @@
 {% load bootstrap_tags %}
 {% block content %}
 
-    {% if next %}
+        {% if next %}
         <form role="form" method="post" action="{% url 'login' %}?next={{ next }}">
-    {% else %}
+        {% else %}
         <form role="form" method="post" action="{% url 'login' %}">
-    {% endif %}
+        {% endif %}
 
             <legend>Login</legend>
             {% csrf_token %}

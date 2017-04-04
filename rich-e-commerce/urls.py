@@ -17,6 +17,7 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from home.views import get_index
 from accounts import urls as accounts_urls
+from accounts import reset_urls as reset_urls
 from products import urls as products_urls
 from categories import urls as categories_urls
 from payments import urls as payments_urls
@@ -50,5 +51,5 @@ urlpatterns = [
     url(r'^$', get_index, name='index'),
     url(r'^media/(?P<path>.*)$', static.serve,{'document_root': MEDIA_ROOT}),
     url(r'accounts/', include(accounts_urls)),
-    url(r'user/', include(accounts_urls)),
+    url(r'user/', include(reset_urls)),
 ]

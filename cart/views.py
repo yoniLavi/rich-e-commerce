@@ -19,7 +19,7 @@ stripe.api_key = settings.STRIPE_SECRET
 
 
 
-@login_required(login_url="/login")
+@login_required(login_url="/accounts/login")
 def user_cart(request):
     cartItems = CartItem.objects.filter(user=request.user)
     total = 0
@@ -64,7 +64,7 @@ def user_cart(request):
 
 
 
-@login_required(login_url="/login")
+@login_required(login_url="/accounts/login")
 def add_to_cart(request, id):
     product = get_object_or_404(Product, pk=id)
     quantity=int(request.POST.get('quantity'))
@@ -83,10 +83,15 @@ def add_to_cart(request, id):
     return redirect(reverse('cart'))
 
 
-def remove_from_cart(request, id):
-    CartItem.objects.get(id=id).delete()
+def adjust_cart(request, id):
+    quantity = request.POST['quantity']
+    cartItem = CartItem.objects.get(id=id)
+    if int(quantity) > 0:
+        cartItem.quantity = quantity
+        cartItem.save()
+    else:
+        cartItem.delete()
     return redirect(reverse('cart'))
-
 
 
 class UserViewSet(viewsets.ModelViewSet):
