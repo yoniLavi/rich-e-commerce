@@ -11,12 +11,18 @@ def root_categories(request):
 
 
 def get_category(request, id):
-    categories = Category.objects.filter(parent=None)
+    this_category = get_object_or_404(Category, pk=id)
 
-    parent = get_object_or_404(Category, pk=id)
-    subcategories = Category.objects.filter(parent=parent)
+    crumbs = []
 
-    products = parent.products.all()
+    crumb = this_category
+    while crumb != None:
+        crumbs.insert(0, crumb)
+        crumb = crumb.parent
 
-    args = { 'categories': categories, 'subcategories': subcategories, 'products': products}
+    subcategories = Category.objects.filter(parent=this_category)
+
+    products = this_category.products.all()
+
+    args = { 'categories': subcategories, 'products': products, 'crumbs': crumbs}
     return render(request, 'categories.html', args)
