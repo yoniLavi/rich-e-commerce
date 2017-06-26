@@ -26,3 +26,8 @@ def get_category(request, id):
 
     args = { 'categories': subcategories, 'products': products, 'crumbs': crumbs}
     return render(request, 'categories.html', args)
+
+
+def root_categories_context(request):
+    categories = Category.objects.filter(parent=None)
+    return {'root_categories': categories}

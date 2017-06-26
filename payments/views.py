@@ -10,7 +10,7 @@ import stripe
 stripe.api_key = settings.STRIPE_SECRET
 
 
-@login_required(login_url="/login?next=payments/buy_now")
+@login_required(login_url="/accounts/login")
 def buy_now(request, id):
     if request.method == 'POST':
         form = MakePaymentForm(request.POST)
@@ -23,7 +23,7 @@ def buy_now(request, id):
                     description=product.name,
                     card=form.cleaned_data['stripe_id'],
                 )
-            except stripe.error.CardError, e:
+            except (stripe.error.CardError, e):
                 messages.error(request, "Your card was declined!")
 
             if customer.paid:

@@ -23,7 +23,7 @@ from categories import urls as categories_urls
 from payments import urls as payments_urls
 from cart import urls as cart_urls
 from django.views import static
-from settings import MEDIA_ROOT
+from .settings import MEDIA_ROOT
 
 
 
