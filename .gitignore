@@ -4,3 +4,4 @@
 media
 .DS_Store
 env.sh
+.vscode

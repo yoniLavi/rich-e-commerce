@@ -22,7 +22,7 @@ def login(request):
                 auth.login(request, user)
                 messages.error(request, "You have successfully logged in")
 
-                if request.GET and 'next' in request.GET:
+                if request.GET and request.GET['next'] !='':
                     next = request.GET['next']
                     return HttpResponseRedirect(next)
                 else:
