@@ -17,8 +17,8 @@
 <div class="container">
    <div class="masthead">
        <ul class="nav nav-pills pull-right">
-            <li><a href="/"><i class="fa fa-home"></i> Home</a></li>
-            <li><a href="{% url 'products' %}"><i class="fa fa-cube"></i> Products</a></li>
+            <li><a href="{% url 'index' %}"><i class="fa fa-home"></i> Home</a></li>
+            <li><a href="{% url 'categories' %}"><i class="fa fa-cube"></i> Products</a></li>
             {% if user.is_authenticated %}
                 <li><a href="{% url 'profile' %}"><i class="fa fa-user"></i> Profile</a></li>
                 <li><a href="{% url 'logout' %}"><i class="fa fa-sign-out"></i> Log Out</a></li>
@@ -27,6 +27,11 @@
                 <li><a href="{% url 'login' %}"><i class="fa fa-sign-in"></i> Log In</a></li>
             {% endif %}
             <li><a href="{% url 'cart' %}"><i class="fa fa-shopping-cart"></i> Cart</a></li>
+
+            {% if num_cart_items > 0 %}
+                <li>{{ num_cart_items }}</li>
+            {% endif%}
+
         </ul>
        <h1><span class="fui-settings-16 muted">Our Simple Site</span></h1>
    </div>

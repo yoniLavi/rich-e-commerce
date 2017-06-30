@@ -19,7 +19,6 @@
                 <td>{{ product.description }}</td>
                 <td>{{ product.price }}</td>
                 <td><a href="{% url 'buy_now_stripe' product.id %}" )>Buy Now</a></td>
-                {#                    <td><a href="{% url 'add_to_cart' product.id %}")>Add To Cart</a></td>#}
                 <td>
                     <form method="post" action="{% url 'add_to_cart' product.id %}">
                         {% csrf_token %}

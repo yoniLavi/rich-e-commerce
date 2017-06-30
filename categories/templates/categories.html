@@ -1,9 +1,16 @@
 {% extends 'base.html' %}
 
 {% block sidebar %}
-    {% for category in categories %}
+    {% for category in root_categories %}
         <li class="category-name"><a href="{% url 'category' category.id %}">{{ category.name }}</a></li>
     {% endfor %}
+
+    <hr>
+
+    {% for category in subcategories %}
+    <li class="category-name"><a href="{% url 'category' category.id %}">{{ category.name }}</a></li>
+    {% endfor %}
+
 {% endblock sidebar %}
 
 

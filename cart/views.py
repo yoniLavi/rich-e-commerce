@@ -94,6 +94,15 @@ def adjust_cart(request, id):
     return redirect(reverse('cart'))
 
 
+def root_categories_context(request):
+    if request.user.is_anonymous():
+        return {'num_cart_items': 0}    
+    else:
+        cartItems = CartItem.objects.filter(user=request.user)    
+        return {'num_cart_items': cartItems.count()}
+
+
+
 class UserViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.
